@@ -88,14 +88,15 @@ public class CompleteCommand extends AutorankCommand {
         }
 
         if (!targetPath.allowPartialCompletion()) {
-            sender.sendMessage(ChatColor.RED + "This path does not allow you to complete requirements one by one. You" +
-                    " need to meet all requirements simulateneously.");
+            sender.sendMessage(Lang.COMPLETE_REQUIREMENT_NO_PARTIAL.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "This path does not allow you to complete requirements one by one. You" + " need to meet all requirements simulateneously.");
             return true;
         }
 
         // Rank player as he has fulfilled all requirements
         if (targetPath.getFailedRequirements(player.getUniqueId(), true).size() == 0) {
-            player.sendMessage(ChatColor.GREEN + "You don't have any requirements left.");
+            player.sendMessage(Lang.COMPLETE_REQUIREMENT_FULFILLED.getConfigValue());
+            // player.sendMessage(ChatColor.GREEN + "You don't have any requirements left.");
             return true;
         }
 
@@ -118,9 +119,10 @@ public class CompleteCommand extends AutorankCommand {
             targetPath.completeRequirement(player.getUniqueId(), holder.getRequirementId());
         } else {
             // player does not meet requirements
-            player.sendMessage(ChatColor.RED + Lang.DO_NOT_MEET_REQUIREMENTS_FOR.getConfigValue(completionID + ""));
+            player.sendMessage(ChatColor.RED + Lang.DO_NOT_MEET_REQUIREMENTS_FOR.getConfigValue(completionID));
             player.sendMessage(ChatColor.AQUA + holder.getDescription());
-            player.sendMessage(ChatColor.GREEN + "Current: " + ChatColor.GOLD + holder.getProgress(player.getUniqueId()));
+            player.sendMessage(ChatColor.GREEN + Lang.DO_NOT_MEET_REQUIREMENTS_CURRENT.getConfigValue(holder.getProgress(player.getUniqueId())));
+            // player.sendMessage(ChatColor.GREEN + "Current: " + ChatColor.GOLD + holder.getProgress(player.getUniqueId()));
         }
 
         return true;
@@ -165,7 +167,8 @@ public class CompleteCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Complete a requirement at this moment";
+        return Lang.DESC_COMPLETE_COMMAND.getConfigValue();
+        // return "Complete a requirement at this moment";
     }
 
     @Override
@@ -175,6 +178,7 @@ public class CompleteCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar complete <req id> <path>";
+        return Lang.USAGE_COMPLETE_COMMAND.getConfigValue();
+        // return "/ar complete <req id> <path>";
     }
 }

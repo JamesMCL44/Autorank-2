@@ -68,8 +68,8 @@ public class InfoCommand extends AutorankCommand {
             }
 
             // Send info of player to the sender.
-            sender.sendMessage(ChatColor.DARK_AQUA + "---------- [" + ChatColor.GOLD + playerName + ChatColor.DARK_AQUA + "] " +
-                    "----------");
+            sender.sendMessage(Lang.INFO_HEADER.getConfigValue(playerName));
+            // sender.sendMessage(ChatColor.DARK_AQUA + "---------- [" + ChatColor.GOLD + playerName + ChatColor.DARK_AQUA + "] ----------");
 
             List<Path> activePaths = plugin.getPathManager().getActivePaths(uuid);
             List<Path> completedPaths = plugin.getPathManager().getCompletedPaths(uuid);
@@ -105,16 +105,14 @@ public class InfoCommand extends AutorankCommand {
 
 
                 if (i == (activePaths.size() - 1)) {
-                    activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString())
-                            .append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%)");
+                    activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%)");
                 } else if (i == (activePaths.size() - 2)) {
                     // Second last
-                    activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString())
-                            .append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%)").append(" " +
-                            "and ");
+                    activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%)").append(Lang.INFO_SECONDLAST_ACTIVE_CONNECTOR.getConfigValue());
+                    // Second last
+                    // activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%)").append(" and ");
                 } else {
-                    activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString())
-                            .append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%), ");
+                    activePathsString.append(ChatColor.DARK_AQUA).append(activePaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("%), ");
                 }
             }
 
@@ -125,32 +123,33 @@ public class InfoCommand extends AutorankCommand {
                 String progressString = ChatColor.YELLOW + "" + completedPaths.get(i).getTimesCompleted(uuid) + "x";
 
                 if (i == (completedPaths.size() - 1)) {
-                    completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(
-                            " (").append(progressString).append(ChatColor.DARK_AQUA).append(")");
+                    completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append(")");
                 } else if (i == (completedPaths.size() - 2)) {
                     // Second last
-                    completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(
-                            " (").append(progressString).append(ChatColor.DARK_AQUA).append(")").append(" and ");
+                    completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append(")").append(Lang.INFO_SECONDLAST_COMPLETED_CONNECTOR.getConfigValue());
+                    // Second last
+                    // completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append(")").append(" and ");
                 } else {
-                    completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(
-                            " (").append(progressString).append(ChatColor.DARK_AQUA).append("), ");
+                    completedPathsString.append(ChatColor.DARK_AQUA).append(completedPaths.get(i).toString()).append(" (").append(progressString).append(ChatColor.DARK_AQUA).append("), ");
                 }
             }
 
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Active paths (" + ChatColor.GOLD + activePaths.size() + ChatColor.LIGHT_PURPLE + "): " + (activePathsString.length() == 0 ? "none" : activePathsString.toString()));
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Completed paths (" + ChatColor.GOLD + completedPaths.size() + ChatColor.LIGHT_PURPLE + "): " + (completedPathsString.length() == 0 ? "none" : completedPathsString.toString()));
+            sender.sendMessage(Lang.INFO_ACTIVEPATH_LIST.getConfigValue(activePaths.size(),(activePathsString.length() == 0 ? Lang.INFO_NIL_PATH.getConfigValue() : activePathsString.toString())));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Active paths (" + ChatColor.GOLD + activePaths.size() + ChatColor.LIGHT_PURPLE + "): " + (activePathsString.length() == 0 ? "none" : activePathsString.toString()));
+            sender.sendMessage(Lang.INFO_COMPLETEDPATH_LIST.getConfigValue(completedPaths.size(), (completedPathsString.length() == 0 ? Lang.INFO_NIL_PATH.getConfigValue() : completedPathsString.toString())));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Completed paths (" + ChatColor.GOLD + completedPaths.size() + ChatColor.LIGHT_PURPLE + "): " + (completedPathsString.length() == 0 ? "none" : completedPathsString.toString()));
 
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Is exempted from leaderboard: " + (isExemptedFromLeaderboard
-                    ? ChatColor.GREEN : ChatColor.RED) + isExemptedFromLeaderboard);
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Is exempted from checking: " + (isExemptedFromAutomaticChecking
-                    ? ChatColor.GREEN : ChatColor.RED) + isExemptedFromAutomaticChecking);
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Is exempted from obtaining time: " + (isExemptedFromTimeAddition
-                    ? ChatColor.GREEN : ChatColor.RED) + isExemptedFromTimeAddition);
+            sender.sendMessage(Lang.INFO_EXEMPTED_LEADERBOARD.getConfigValue(isExemptedFromLeaderboard ? ChatColor.GREEN + Lang.INFO_BOOLEAN_TRUE.getConfigValue() : ChatColor.RED + Lang.INFO_BOOLEAN_FALSE.getConfigValue()));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Is exempted from leaderboard: " + (isExemptedFromLeaderboard ? ChatColor.GREEN : ChatColor.RED) + isExemptedFromLeaderboard);
+            sender.sendMessage(Lang.INFO_EXEMPTED_CHECKING.getConfigValue(isExemptedFromAutomaticChecking ? ChatColor.GREEN + Lang.INFO_BOOLEAN_TRUE.getConfigValue() : ChatColor.RED + Lang.INFO_BOOLEAN_FALSE.getConfigValue()));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Is exempted from checking: " + (isExemptedFromAutomaticChecking ? ChatColor.GREEN : ChatColor.RED) + isExemptedFromAutomaticChecking);
+            sender.sendMessage(Lang.INFO_EXEMPTED_OBTAINING_TIME.getConfigValue(isExemptedFromTimeAddition ? ChatColor.GREEN + Lang.INFO_BOOLEAN_TRUE.getConfigValue() : ChatColor.RED + Lang.INFO_BOOLEAN_FALSE.getConfigValue()));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Is exempted from obtaining time: " + (isExemptedFromTimeAddition ? ChatColor.GREEN : ChatColor.RED) + isExemptedFromTimeAddition);
 
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Local playtime: " + ChatColor.GOLD +
-                    (localTotalTime <= 0 ? "none" : AutorankTools.timeToString(localTotalTime, TimeUnit.MINUTES)));
-            sender.sendMessage(ChatColor.LIGHT_PURPLE + "Global playtime: " + ChatColor.GOLD +
-                    (globalTotalTime <= 0 ? "none" : AutorankTools.timeToString(globalTotalTime, TimeUnit.MINUTES)));
+            sender.sendMessage(Lang.INFO_PLAYTIME_LOCAL.getConfigValue((localTotalTime <= 0 ? Lang.INFO_NIL_PLAYTIME.getConfigValue() : AutorankTools.timeToString(localTotalTime, TimeUnit.MINUTES))));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Local playtime: " + ChatColor.GOLD + (localTotalTime <= 0 ? "none" : AutorankTools.timeToString(localTotalTime, TimeUnit.MINUTES)));
+            sender.sendMessage(Lang.INFO_PLAYTIME_GLOBAL.getConfigValue((globalTotalTime <= 0 ? Lang.INFO_NIL_PLAYTIME.getConfigValue() : AutorankTools.timeToString(globalTotalTime, TimeUnit.MINUTES))));
+            // sender.sendMessage(ChatColor.LIGHT_PURPLE + "Global playtime: " + ChatColor.GOLD + (globalTotalTime <= 0 ? "none" : AutorankTools.timeToString(globalTotalTime, TimeUnit.MINUTES)));
 
         });
 
@@ -161,7 +160,8 @@ public class InfoCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Show info of a player";
+        return Lang.DESC_INFO_COMMAND.getConfigValue();
+        // return "Show info of a player";
     }
 
     @Override
@@ -171,6 +171,7 @@ public class InfoCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar info <player>";
+        return Lang.USAGE_INFO_COMMAND.getConfigValue();
+        // return "/ar info <player>";
     }
 }

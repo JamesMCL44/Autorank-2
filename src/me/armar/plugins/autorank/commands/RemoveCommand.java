@@ -74,7 +74,8 @@ public class RemoveCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Remove [value] from [player]'s time.";
+        return Lang.DESC_REMOVE_COMMAND.getConfigValue();
+        // return "Remove [value] from [player]'s time.";
     }
 
     @Override
@@ -84,6 +85,7 @@ public class RemoveCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar remove [player] [value]";
+        return Lang.USAGE_REMOVE_COMMAND.getConfigValue();
+        // return "/ar remove [player] [value]";
     }
 }

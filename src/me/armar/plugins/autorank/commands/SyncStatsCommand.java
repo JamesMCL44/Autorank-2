@@ -2,6 +2,7 @@ package me.armar.plugins.autorank.commands;
 
 import me.armar.plugins.autorank.Autorank;
 import me.armar.plugins.autorank.commands.manager.AutorankCommand;
+import me.armar.plugins.autorank.language.Lang;
 import me.armar.plugins.autorank.permissions.AutorankPermission;
 import me.armar.plugins.autorank.storage.TimeType;
 import org.bukkit.ChatColor;
@@ -51,16 +52,19 @@ public class SyncStatsCommand extends AutorankCommand {
         }
 
         if (count == 0) {
-            sender.sendMessage(ChatColor.GREEN + "Could not sync stats. Run command again!");
+            sender.sendMessage(Lang.SYNC_STATS_FAILED.getConfigValue());
+            // sender.sendMessage(ChatColor.GREEN + "Could not sync stats. Run command again!");
         } else {
-            sender.sendMessage(ChatColor.GREEN + "Time has succesfully been updated for all entries.");
+            sender.sendMessage(Lang.SYNC_STATS_SUCCESS.getConfigValue());
+            // sender.sendMessage(ChatColor.GREEN + "Time has succesfully been updated for all entries.");
         }
         return true;
     }
 
     @Override
     public String getDescription() {
-        return "Sync Autorank's time to Stats' time.";
+        return Lang.DESC_SYNC_STATS_COMMAND.getConfigValue();
+        // return "Sync Autorank's time to Stats' time.";
     }
 
     @Override
@@ -70,6 +74,7 @@ public class SyncStatsCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar syncstats";
+        return Lang.USAGE_SYNC_STATS_COMMAND.getConfigValue();
+        // return "/ar syncstats";
     }
 }

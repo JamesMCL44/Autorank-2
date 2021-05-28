@@ -87,7 +87,8 @@ public class HelpCommand extends AutorankCommand {
             end = start + 6;
         }
 
-        sender.sendMessage(ChatColor.GREEN + "-- Autorank Commands --");
+        sender.sendMessage(Lang.HELP_HEADER.getConfigValue());
+        // sender.sendMessage(ChatColor.GREEN + "-- Autorank Commands --");
 
         for (int i = start; i < end; i++) {
             // Can't go any further
@@ -99,12 +100,13 @@ public class HelpCommand extends AutorankCommand {
             sender.sendMessage(ChatColor.AQUA + command.getUsage() + ChatColor.GRAY + " - " + command.getDescription());
         }
 
-        sender.sendMessage(ChatColor.BLUE + "Page " + page + " of " + maxPages);
+        sender.sendMessage(Lang.HELP_FOOTER.getConfigValue(page, maxPages));
     }
 
     @Override
     public String getDescription() {
-        return "Show a list of commands.";
+        return Lang.DESC_HELP_COMMAND.getConfigValue();
+        // return "Show a list of commands.";
     }
 
     @Override
@@ -114,6 +116,7 @@ public class HelpCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar help <page>";
+        return Lang.USAGE_HELP_COMMAND.getConfigValue();
+        // return "/ar help <page>";
     }
 }

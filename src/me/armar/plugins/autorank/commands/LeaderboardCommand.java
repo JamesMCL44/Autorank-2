@@ -80,15 +80,18 @@ public class LeaderboardCommand extends AutorankCommand {
 
         if (force) {
             // Forcely update leaderboard first.
-            sender.sendMessage(ChatColor.GREEN + "Updating the leaderboard. This could take a while!");
-            sender.sendMessage(ChatColor.GOLD + "I'll let you know when the leaderboard is updated.");
+            sender.sendMessage(Lang.LEADERBOARD_FORCEUPDATE_1.getConfigValue());
+            sender.sendMessage(Lang.LEADERBOARD_FORCEUPDATE_2.getConfigValue());
+            // sender.sendMessage(ChatColor.GREEN + "Updating the leaderboard. This could take a while!");
+            // sender.sendMessage(ChatColor.GOLD + "I'll let you know when the leaderboard is updated.");
 
             plugin.getServer().getScheduler().runTaskAsynchronously(plugin, new Runnable() {
                 public void run() {
                     // Update leaderboard.
                     plugin.getLeaderboardManager().updateLeaderboard(type2);
 
-                    sender.sendMessage(ChatColor.YELLOW + "Leaderboard updated!");
+                    sender.sendMessage(Lang.LEADERBOARD_FORCEUPDATE_DONE.getConfigValue());
+                    // sender.sendMessage(ChatColor.YELLOW + "Leaderboard updated!");
 
                     plugin.getLeaderboardManager().sendLeaderboard(sender, type2);
                 }
@@ -108,7 +111,8 @@ public class LeaderboardCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Show the leaderboard.";
+        return Lang.DESC_LEADERBOARD_COMMAND.getConfigValue();
+        // return "Show the leaderboard.";
     }
 
     @Override
@@ -118,7 +122,8 @@ public class LeaderboardCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar leaderboard <type>";
+        return Lang.USAGE_LEADERBOARD_COMMAND.getConfigValue();
+        // return "/ar leaderboard <type>";
     }
 
     @Override

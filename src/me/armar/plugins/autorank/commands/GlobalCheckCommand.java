@@ -102,9 +102,9 @@ public class GlobalCheckCommand extends AutorankCommand {
                 sender.sendMessage(Lang.PLAYER_IS_INVALID.getConfigValue(playerName));
                 return;
             }
-
-            AutorankTools.sendColoredMessage(sender, playerName + " has played for "
-                    + AutorankTools.timeToString(globalPlayTime, TimeUnit.MINUTES) + " across all servers.");
+            AutorankTools.sendColoredMessage(sender, Lang.GLOBALCHECK_RESULT.getConfigValue(playerName, AutorankTools.timeToString(globalPlayTime, TimeUnit.MINUTES)));
+            // AutorankTools.sendColoredMessage(sender, playerName + " has played for "
+            //         + AutorankTools.timeToString(globalPlayTime, TimeUnit.MINUTES) + " across all servers.");
 
         });
 
@@ -115,7 +115,8 @@ public class GlobalCheckCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Check [player]'s global playtime.";
+        return Lang.DESC_GLOBALCHECK_COMMAND.getConfigValue();
+        // return "Check [player]'s global playtime.";
     }
 
     @Override
@@ -125,6 +126,7 @@ public class GlobalCheckCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar gcheck [player]";
+        return Lang.USAGE_GLOBALCHECK_COMMAND.getConfigValue() ;
+        // return "/ar gcheck [player]";
     }
 }

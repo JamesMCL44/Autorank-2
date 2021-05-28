@@ -98,7 +98,8 @@ public class TimesCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Show the amount of time you played.";
+        return Lang.DESC_TIMES_COMMAND.getConfigValue();
+        // return "Show the amount of time you played.";
     }
 
     @Override
@@ -108,6 +109,7 @@ public class TimesCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar times <player>";
+        return Lang.USAGE_TIMES_COMMAND.getConfigValue();
+        // return "/ar times <player>";
     }
 }

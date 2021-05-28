@@ -2,6 +2,7 @@ package me.armar.plugins.autorank.commands;
 
 import me.armar.plugins.autorank.Autorank;
 import me.armar.plugins.autorank.commands.manager.AutorankCommand;
+import me.armar.plugins.autorank.language.Lang;
 import me.armar.plugins.autorank.debugger.Debugger;
 import me.armar.plugins.autorank.permissions.AutorankPermission;
 import org.bukkit.ChatColor;
@@ -33,15 +34,18 @@ public class DebugCommand extends AutorankCommand {
 
         // Let user know whether debug mode has been enabled or disabled.
         if (Debugger.debuggerEnabled) {
-            sender.sendMessage(ChatColor.GOLD + "Debug mode of Autorank has been " + ChatColor.GREEN + "enabled");
+            sender.sendMessage(Lang.DEBUG_ENABLED.getConfigValue());
+            // sender.sendMessage(ChatColor.GOLD + "Debug mode of Autorank has been " + ChatColor.GREEN + "enabled");
         } else {
-            sender.sendMessage(ChatColor.GOLD + "Debug mode of Autorank has been " + ChatColor.RED + "disabled");
+            sender.sendMessage(Lang.DEBUG_DISABLED.getConfigValue());
+            // sender.sendMessage(ChatColor.GOLD + "Debug mode of Autorank has been " + ChatColor.RED + "disabled");
         }
 
         plugin.getServer().getScheduler().runTaskAsynchronously(plugin, () -> {
             final String fileName = plugin.getDebugger().createDebugFile();
 
-            sender.sendMessage(ChatColor.GREEN + "Debug file '" + fileName + "' created!");
+            sender.sendMessage(Lang.DEBUG_FILE_CREATED.getConfigValue(fileName));
+            // sender.sendMessage(ChatColor.GREEN + "Debug file '" + fileName + "' created!");
         });
 
         return true;
@@ -49,7 +53,8 @@ public class DebugCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Shows debug information.";
+        return Lang.DESC_DEBUG_COMMAND.getConfigValue();
+        // return "Shows debug information.";
     }
 
     @Override
@@ -59,6 +64,7 @@ public class DebugCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar debug";
+        return Lang.USAGE_DEBUG_COMMAND.getConfigValue();
+        // return "/ar debug";
     }
 }

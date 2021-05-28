@@ -44,10 +44,10 @@ public class MigrateCommand extends AutorankCommand {
         MigrationManager.Migrationable migrationableType;
 
         try {
-            migrationableType =
-                    MigrationManager.Migrationable.valueOf(args[1].toUpperCase().replace(" ", "_"));
+            migrationableType = MigrationManager.Migrationable.valueOf(args[1].toUpperCase().replace(" ", "_"));
         } catch (IllegalArgumentException e) {
-            sender.sendMessage(ChatColor.RED + "This is not a valid type of migration!");
+            sender.sendMessage(Lang.MIGRATE_INVALID_TYPE.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "This is not a valid type of migration!");
             return true;
         }
 
@@ -55,13 +55,13 @@ public class MigrateCommand extends AutorankCommand {
                 plugin.getMigrationManager().getMigrationablePlugin(migrationableType).orElse(null);
 
         if (migrationablePlugin == null) {
-            sender.sendMessage(ChatColor.RED + "Could not find a migration plugin for the type you specified.");
+            sender.sendMessage(Lang.MIGRATE_SOURCE_NOTFOUND.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "Could not find a migration plugin for the type you specified.");
             return true;
         }
 
         if (!migrationablePlugin.isReady()) {
-            sender.sendMessage(ChatColor.RED + "This migration plugin is not ready to be used. Are the plugins that " +
-                    "depend on it active?");
+            sender.sendMessage(Lang.MIGRATE_SOURCE_NOTREADY.getConfigValue());
             return true;
         }
 
@@ -69,7 +69,8 @@ public class MigrateCommand extends AutorankCommand {
                 plugin.getPlayTimeStorageManager().getPrimaryStorageProvider().getStoredPlayers(TimeType.TOTAL_TIME);
 
         CompletableFuture<Void> task = migrationablePlugin.migratePlayTime(uuids).thenAccept(migratedPlayers -> {
-            sender.sendMessage(ChatColor.GREEN + "" + migratedPlayers + " players have been migrated to Autorank.");
+            sender.sendMessage(Lang.MIGRATE_SUCCESS.getConfigValue(migratedPlayers));
+            // sender.sendMessage(ChatColor.GREEN + "" + migratedPlayers + " players have been migrated to Autorank.");
         });
 
         this.runCommandTask(task);
@@ -98,7 +99,8 @@ public class MigrateCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Migrate play time data from another plugin to Autorank";
+        return Lang.DESC_MIGRATE_COMMAND.getConfigValue();
+        // return "Migrate play time data from another plugin to Autorank";
     }
 
     @Override
@@ -108,7 +110,8 @@ public class MigrateCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar migrate <type>";
+        return Lang.USAGE_MIGRATE_COMMAND.getConfigValue();
+        // return "/ar migrate <type>";
     }
 
 }

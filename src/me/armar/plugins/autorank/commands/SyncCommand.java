@@ -32,7 +32,8 @@ public class SyncCommand extends AutorankCommand {
             return true;
 
         if (args.length > 1 && args[1].equalsIgnoreCase("stats")) {
-            sender.sendMessage(ChatColor.RED + "You probably meant /ar syncstats or /ar sync!");
+            sender.sendMessage(Lang.SYNC_SUGGESTION.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "You probably meant /ar syncstats or /ar sync!");
             return true;
         }
 
@@ -52,11 +53,13 @@ public class SyncCommand extends AutorankCommand {
 
         // Check if Flatfile is active
         if (!plugin.getPlayTimeStorageManager().isStorageTypeActive(PlayTimeStorageProvider.StorageType.FLAT_FILE)) {
-            sender.sendMessage(ChatColor.RED + "There is no active storage provider that supports flatfile data.");
+            sender.sendMessage(Lang.SYNC_FLATFILE_STORAGE_NOTACTIVE.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "There is no active storage provider that supports flatfile data.");
             return true;
         }
 
-        sender.sendMessage(ChatColor.RED + "You do not have to use this command regularly.");
+        sender.sendMessage(Lang.SYNC_NOTICE.getConfigValue());
+        // sender.sendMessage(ChatColor.RED + "You do not have to use this command regularly.");
 
         PlayTimeStorageProvider flatfileStorageProvider =
                 plugin.getPlayTimeStorageManager().getStorageProvider(PlayTimeStorageProvider
@@ -95,8 +98,8 @@ public class SyncCommand extends AutorankCommand {
 
                 }
 
-                sender.sendMessage(ChatColor.GREEN + "Successfully updated " + count + " items in data.yml from " +
-                        "MySQL database records!");
+                sender.sendMessage(Lang.SYNC_SUCCESS_LOCAL.getConfigValue(count));
+                // sender.sendMessage(ChatColor.GREEN + "Successfully updated " + count + " items in data.yml from MySQL database records!");
             });
         } else {
             // Do this async as we are accessing mysql database.
@@ -128,7 +131,8 @@ public class SyncCommand extends AutorankCommand {
                     }
 
                 }
-                sender.sendMessage(ChatColor.GREEN + "Successfully updated MySQL records!");
+                sender.sendMessage(Lang.SYNC_SUCCESS_MYSQL.getConfigValue());
+                // sender.sendMessage(ChatColor.GREEN + "Successfully updated MySQL records!");
             });
         }
 
@@ -137,7 +141,8 @@ public class SyncCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Sync MySQL database with server (Use only once per server).";
+        return Lang.DESC_SYNC_COMMAND.getConfigValue();
+        // return "Sync MySQL database with server (Use only once per server).";
     }
 
     @Override
@@ -147,6 +152,7 @@ public class SyncCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar sync";
+        return Lang.USAGE_SYNC_COMMAND.getConfigValue();
+        // return "/ar sync";
     }
 }

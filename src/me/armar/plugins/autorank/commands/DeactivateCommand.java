@@ -64,11 +64,11 @@ public class DeactivateCommand extends AutorankCommand {
         plugin.getPathManager().deassignPath(targetPath, player.getUniqueId());
 
         if (!targetPath.shouldStoreProgressOnDeactivation()) {
-            sender.sendMessage(ChatColor.GREEN + "Path '" + targetPath.getDisplayName() + "' is deactivated " +
-                    ChatColor.RED + "and your progress for this path has been reset.");
+            sender.sendMessage(Lang.DEACTIVATE_PATH_PROGRESS_RESET.getConfigValue(targetPath.getDisplayName()));
+            // sender.sendMessage(ChatColor.GREEN + "Path '" + targetPath.getDisplayName() + "' is deactivated " + ChatColor.RED + "and your progress for this path has been reset.");
         } else {
-            sender.sendMessage(ChatColor.GREEN + "Path '" + targetPath.getDisplayName() + "' is deactivated " +
-                    ChatColor.GOLD + "but your progress for this path has been stored.");
+            sender.sendMessage(Lang.DEACTIVATE_PATH_PROGRESS_STORED.getConfigValue(targetPath.getDisplayName()));
+            // sender.sendMessage(ChatColor.GREEN + "Path '" + targetPath.getDisplayName() + "' is deactivated " + ChatColor.GOLD + "but your progress for this path has been stored.");
         }
 
         return true;
@@ -103,7 +103,8 @@ public class DeactivateCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Deactivate a path";
+        return Lang.DESC_DEACTIVATE_COMMAND.getConfigValue();
+        // return "Deactivate a path";
     }
 
     @Override
@@ -113,7 +114,8 @@ public class DeactivateCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar deactivate <path>";
+        return Lang.USAGE_DEACTIVATE_COMMAND.getConfigValue();
+        // return "/ar deactivate <path>";
     }
 
 }

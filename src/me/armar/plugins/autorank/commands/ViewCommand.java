@@ -36,7 +36,8 @@ public class ViewCommand extends AutorankCommand {
         }
 
         if (args.length < 2) {
-            sender.sendMessage(Lang.INVALID_FORMAT.getConfigValue("/ar view <path name> or /ar view list"));
+            sender.sendMessage(Lang.INVALID_FORMAT.getConfigValue(Lang.USAGE_VIEW_COMMAND.getConfigValue()));
+            // sender.sendMessage(Lang.INVALID_FORMAT.getConfigValue("/ar view <path name> or /ar view list"));
             return true;
         }
 
@@ -71,7 +72,8 @@ public class ViewCommand extends AutorankCommand {
                 return true;
             }
 
-            sender.sendMessage(ChatColor.GREEN + "The following paths are possible: ");
+            sender.sendMessage(Lang.VIEW_POSSIABLE_PATHS.getConfigValue());
+            // sender.sendMessage(ChatColor.GREEN + "The following paths are possible: ");
 
             final String pathsString = AutorankTools.createStringFromList(paths);
             sender.sendMessage(ChatColor.WHITE + pathsString);
@@ -90,14 +92,14 @@ public class ViewCommand extends AutorankCommand {
 
             List<CompositeRequirement> prerequisites = targetPath.getPrerequisites();
 
-            List<String> messages = plugin.getPlayerChecker().formatRequirementsToList(prerequisites, new
-                    ArrayList<>());
+            List<String> messages = plugin.getPlayerChecker().formatRequirementsToList(prerequisites, new ArrayList<>());
 
-            sender.sendMessage(ChatColor.GREEN + "Prerequisites of path '" + ChatColor.GRAY
-                    + targetPath.getDisplayName() + ChatColor.GREEN + "':");
+            sender.sendMessage(Lang.VIEW_PATH_PREREQUISITES.getConfigValue(targetPath.getDisplayName()));
+            // sender.sendMessage(ChatColor.GREEN + "Prerequisites of path '" + ChatColor.GRAY + targetPath.getDisplayName() + ChatColor.GREEN + "':");
 
             if (messages.isEmpty()) {
-                AutorankTools.sendColoredMessage(sender, "none");
+                AutorankTools.sendColoredMessage(sender, Lang.VIEW_PATH_NIL_PREREQUISITES.getConfigValue());
+                // AutorankTools.sendColoredMessage(sender, "none");
             } else {
                 for (final String message : messages) {
                     AutorankTools.sendColoredMessage(sender, message);
@@ -107,14 +109,14 @@ public class ViewCommand extends AutorankCommand {
 
             List<CompositeRequirement> requirements = targetPath.getRequirements();
 
-            messages = plugin.getPlayerChecker().formatRequirementsToList(requirements, new
-                    ArrayList<>());
+            messages = plugin.getPlayerChecker().formatRequirementsToList(requirements, new ArrayList<>());
 
-            sender.sendMessage(ChatColor.GREEN + "Requirements of path '" + ChatColor.GRAY
-                    + targetPath.getDisplayName() + ChatColor.GREEN + "':");
+            sender.sendMessage(Lang.VIEW_PATH_REQUIREMENT.getConfigValue(targetPath.getDisplayName()));
+            // sender.sendMessage(ChatColor.GREEN + "Requirements of path '" + ChatColor.GRAY + targetPath.getDisplayName() + ChatColor.GREEN + "':");
 
             if (messages.isEmpty()) {
-                AutorankTools.sendColoredMessage(sender, "none");
+                AutorankTools.sendColoredMessage(sender, Lang.VIEW_PATH_NIL_REQUIREMENT.getConfigValue());
+                // AutorankTools.sendColoredMessage(sender, "none");
             } else {
                 for (final String message : messages) {
                     AutorankTools.sendColoredMessage(sender, message);
@@ -126,11 +128,12 @@ public class ViewCommand extends AutorankCommand {
             // Set messages depending on console or player
             messages = plugin.getPlayerChecker().formatResultsToList(results);
 
-            sender.sendMessage(ChatColor.GREEN + "Results of path '" + ChatColor.GRAY + targetPath.getDisplayName()
-                    + ChatColor.GREEN + "':");
+            sender.sendMessage(Lang.VIEW_PATH_RESULTS.getConfigValue(targetPath.getDisplayName()));
+            // sender.sendMessage(ChatColor.GREEN + "Results of path '" + ChatColor.GRAY + targetPath.getDisplayName() + ChatColor.GREEN + "':");
 
             if (messages.isEmpty()) {
-                AutorankTools.sendColoredMessage(sender, "none");
+                AutorankTools.sendColoredMessage(sender, Lang.VIEW_PATH_NIL_RESULTS.getConfigValue());
+                // AutorankTools.sendColoredMessage(sender, "none");
             } else {
                 for (final String message : messages) {
                     AutorankTools.sendColoredMessage(sender, message);
@@ -183,7 +186,8 @@ public class ViewCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Gives a preview of a certain ranking path";
+        return Lang.DESC_VIEW_COMMAND.getConfigValue();
+        // return "Gives a preview of a certain ranking path";
     }
 
     @Override
@@ -193,7 +197,8 @@ public class ViewCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar view <path name>";
+        return Lang.USAGE_VIEW_COMMAND.getConfigValue();
+        // return "/ar view <path name> or /ar view list";
     }
 
 }

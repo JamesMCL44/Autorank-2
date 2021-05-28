@@ -115,6 +115,12 @@ public enum Lang {
      * You do not meet requirements for #&6{0}&c:
      */
     DO_NOT_MEET_REQUIREMENTS_FOR("do-not-meet-requirements-for", "You do not meet requirements for #&6{0}&c:"),
+
+    /**
+     * You do not meet requirements for #&6{0}&c:
+     */
+    DO_NOT_MEET_REQUIREMENTS_CURRENT("do-not-meet-requirements-current", "Current: &6{0}"),
+
     /**
      * Done
      */
@@ -630,7 +636,591 @@ public enum Lang {
      * Have {0} xp in {1}.
      */
     AURELIUM_SKILLS_XP_REQUIREMENT("Have {0} xp in {1}."),
+    
+
+    /**
+     * Invalid storage file. You can only backup 'playerdata' or 'storage'.
+     */
+    BACKUP_INVALID("BACKUP-INVALID", "&cInvalid storage file. You can only backup 'playerdata' or 'storage'."),
+        /**
+     * Successfully created a backup of playerdata!
+     */
+    BACKUP_SUCCESS_PLAYERDATA("BACKUP-SUCCESS-PLAYERDATA", "&aSuccessfully created a backup of playerdata!"),
+    /**
+     * Successfully created a backup of regular time storage!
+     */
+    BACKUP_SUCCESS_STORAGE("BACKUP-SUCCESS-STORAGE", "&aSuccessfully created a backup of regular time storage!"),
+    
+    /**
+     * {0} does not have any active paths.
+     */
+    CHECK_NO_ACTIVE_PATH("CHECK-NO-ACTIVE-PATH", "&6{0} &cdoes not have any active paths."),
+    /**
+     * ----- [Progress of paths for &6{0}] -----
+     */
+    CHECK_PLAYER_PROGRESS_HEADER("CHECK-PLAYER-PROGRESS-HEADER", "&a----- &7[Progress of paths for &6{0}&7] &a-----"),
+    /**
+     * Progress of '{0}': 
+     */
+    CHECK_PATH_PROGRESS_HEADER("CHECK-PATH-PROGRESS-HEADER", "&7Progress of '&9{0}&7': "),
+    /**
+     * To view the progress of a specific path, use /ar check <path name>.
+     */
+    CHECK_PLAYER_PROGRESS_FOOTER("CHECK-PLAYER-PROGRESS-FOOTER", "&cTo view the progress of a specific path, use /ar check <path name>."),
+    /**
+     * -----------------------
+     */
+    CHECK_SPECIFIC_PATH_LINE_1("CHECK-SPECIFIC-PATH-LINE-1", "&3-----------------------"),
+    /**
+     * You are viewing the path {0} for {1}.
+     */
+    CHECK_SPECIFIC_PATH_LINE_2("CHECK-SPECIFIC-PATH-LINE-2", "&2You are viewing the path &6{0} &2for {1}."),
+    /**
+     * -----------------------
+     */
+    CHECK_SPECIFIC_PATH_LINE_3("CHECK-SPECIFIC-PATH-LINE-3", "&3-----------------------"),
+    /**
+     * Requirements:
+     */
+    CHECK_SPECIFIC_PATH_LINE_4("&7Requirements:"),
+    /**
+     * You should specify a player to check.
+     */
+    CHECK_PATH_ERROR("CHECK-PATH-ERROR", "&cYou should specify a player to check."),
+    /**
+     * There is no player or path named {0}'.
+     */
+    CHECK_PATH_ERROR_NO_PLAYER("CHECK-PATH-ERROR-NO-PLAYER", "&cThere is no player or path named {0}."),
+    /**
+     * {0} does not have {1} as an active path!
+     */
+    CHECK_PATH_ERROR_NO_SPECIFIED_ACTIVE_PATH("CHECK-PATH-ERROR-NO-SPECIFIED-ACTIVE-PATH", "&6{0} &cdoes not have &7{1} &cas an active path!"),
+    
+    /**
+     * You do not meet the prerequisites of this path!
+     */
+    CHOOSE_UNMET_PREREQUISITES_PATH("CHOOSE-UNMET-PREREQUISITES-PATH", "&cYou do not meet the prerequisites of this path!"),
+    /**
+     * Type /ar view {0} to see a list of prerequisites.
+     */
+    CHOOSE_UNMET_PREREQUISITES_PATH_2("CHOOSE-UNMET-PREREQUISITES-PATH_2", "&cType &6/ar view &6{0} &cto see a list of prerequisites."),
+    /**
+     * You are on cooldown for this path!
+     */
+    CHOOSE_PATH_COOLDOWN("CHOOSE-PATH-COOLDOWN", "You are on cooldown for this path!"),
+    /**
+     * You need to wait {0}
+     */
+    CHOOSE_PATH_COOLDOWN_2("CHOOSE-PATH-COOLDOWN-2", "You need to wait {0}"),
+    
+    /**
+     * This path does not allow you to complete requirements one by one. 
+     * You need to meet all requirements simulateneously.
+     */
+    COMPLETE_REQUIREMENT_NO_PARTIAL("CHOOSE-REQUIREMENT-NO-PARTIAL", "&cThis path does not allow you to complete requirements one by one. You need to meet all requirements simulateneously."),
+    /**
+     * This path does not allow you to complete requirements one by one. 
+     * You need to meet all requirements simulateneously.
+     */
+    COMPLETE_REQUIREMENT_FULFILLED("CHOOSE-REQUIREMENT-FULFILLED", "&aYou don't have any requirements left."),
+    
+    /**
+     * Path '{0}' is deactivated and your progress for this path has been reset.
+     */
+    DEACTIVATE_PATH_PROGRESS_RESET("DEACTIVATE-PATH-PROGRESS-RESET", "&aPath '{0}' &6is deactivated and your progress for this path has been reset."),
+    /**
+     * Path '{0}' is deactivated and your progress for this path has been stored.
+     */    
+    DEACTIVATE_PATH_PROGRESS_STORED("DEACTIVATE-PATH-PROGRESS-STORED", "&aPath '{0}' &6is deactivated and your progress for this path has been stored."),    
+    /**
+     * Debug mode of Autorank has been enabled
+     */    
+    DEBUG_ENABLED("DEBUG-ENABLED", "&6Debug mode of Autorank has been &aenabled"),
+    /**
+     * Debug mode of Autorank has been disabled
+     */    
+    DEBUG_DISABLED("DEBUG-DISABLED", "&6Debug mode of Autorank has been &adisabled"),
+    /**
+     * Debug file '{0}' created!
+     */    
+    DEBUG_FILE_CREATED("DEBUG-DISABLED", "&aDebug file '{0}' created!"),    
+    /**
+     * Assigned {0} to {1}
+     */
+    EDITOR_ASSIGN_PATH_SUCCESS("EDITOR-ASSIGN-PATH-SUCCESS", "&aAssigned '&6{0}' &ato {1}"),
+    /**
+     * Could not assigne {0} to {1}
+     */
+    EDITOR_ASSIGN_PATH_FAIL("EDITOR-ASSIGN-PATH-FAIL", "&cCould not assign '&6{0}' &cto {1}"),
+    /**
+     * Unassigned {0} to {1}
+     */
+    EDITOR_UNASSIGN_PATH("EDITOR-UNASSIGN-PATH", "&aUnassigned '&6{0}' &afrom {1}"),
+    /**
+     * Path {0} has been completed for {1}
+     */
+    EDITOR_COMPLETE_PATH("EDITOR-COMPLETE-PATH", "&aPath '&6{0}' &ahas been completed for {1}"),
+    /**
+     * Requirement {0} has been completed for {1}
+     */
+    EDITOR_COMPLETE_PATH_REQUIREMENT("EDITOR-COMPLETE-PATH-REQUIREMENT", "&aRequirement &6{0} &ahas been completed for {1}"),
+    /**
+     * {0} checked!
+     */
+    FORCECHECK_DONE("FORCECHECK-DONE", "&6{0} checked!"),
+    /**
+     * {0} has played for {1} across all servers.
+     */
+    GLOBALCHECK_RESULT("GLOBALCHECK-RESULT", "{0} has played for {1} across all servers."),
+    /**
+     * -- Autorank Commands --
+     */
+    HELP_HEADER("HELP-HEADER", "&a-- Autorank Commands --"),
+    /**
+     * Page {0} of {1}
+     */
+    HELP_FOOTER("HELP-FOOTER", "&9Page {0} of {1}"),
+    /**
+     * Cannot show dependencies as PluginLibrary is not installed
+     */
+    HOOKS_CANNOT_SHOW("HOOKS-CANNOT-SHOW", "&cCannot show dependencies as PluginLibrary is not installed"),
+    /**
+     * Autorank Hooks:
+     */
+    HOOKS_LIST("HOOKS-LIST", "&6Autorank Hooks:"),
+    /**
+     * Imported data of {0} players from Minecraft statistics!:
+     */
+    IMPORT_MINECRAFT_STATS("IMPORT-MINECRAFT-STATS", "Imported data of {0} players from Minecraft statistics!"),
+    /**
+     * There are no active storage providers, so I can't store the imported data!
+     */
+    IMPORT_FAILED_NO_PROVIDER("IMPORT-FAILED-NO-PROVIDER", "&cThere are no active storage providers, so I can't store the imported data!"),
+    /**
+     * You want to store the imported data to the global database, but no database is active.
+     */
+    IMPORT_FAILED_NO_DATABASE("IMPORT-FAILED-NO-DATABASE", "&cYou want to store the imported data to the global database, but no database is active."),
+    /**
+     * Importing data and overriding both the global and local database.
+     */
+    IMPORT_OVERWRITE_BOTH("IMPORT-OVERWRITE-BOTH", "&6Importing data and overriding both the global and local database."),
+    /**
+     * Importing data and overriding global database.
+     */
+    IMPORT_OVERWRITE_GLOBAL("IMPORT-OVERWRITE-GLOBAL", "&6Importing data and overriding global database."),
+    /**
+     * Importing data and adding to global database.
+     */
+    IMPORT_APPEND_GLOBAL("IMPORT-APPEND-GLOBAL", "&6Importing data and adding to global database."),
+    /**
+     * Importing data and overriding local database.
+     */
+    IMPORT_OVERWRITE_LOCAL("IMPORT-OVERWRITE-LOCAL", "&6Importing data and overriding local database."),
+    /**
+     * Importing data and adding to local database.
+     */
+    IMPORT_APPEND_LOCAL("IMPORT-APPEND-LOCAL", "&6Importing data and adding to local database."),
+    /**
+     * Could not import any players for {0}! Are you sure you put any files in the imports folder?
+     */
+    IMPORT_FAILED_NO_FILES("IMPORT-FAILED-NO-FILES", "&cCould not import any players for {0}! Are you sure you put any files in the imports folder?"),
+    /**
+     * Import operation cancelled by user.
+     */
+    IMPORT_CANCELLED("IMPORT-CANCELLED", "&cImport operation cancelled by user."),
+    /**
+     * ---------- [playerName] ----------
+     */
+    INFO_HEADER("INFO-HEADER", "&3---------- [ &6playerName &3] ----------"),
+    /**
+     *  and 
+     */
+    INFO_SECONDLAST_ACTIVE_CONNECTOR("INFO-SECONDLAST-ACTIVE-CONNECTOR", " and "),
+    /**
+     *  and 
+     */
+    INFO_SECONDLAST_COMPLETED_CONNECTOR("INFO-SECONDLAST-COMPLETED-CONNECTOR", " and "),
+    /**
+     * Active paths ({0}): {1}
+     */
+    INFO_ACTIVEPATH_LIST("IMPORT-ACTIVEPATH-LIST", "&dActive paths (&6{0}&d): {1}"),
+    /**
+     * Completed paths ({0}): {1}
+     */
+    INFO_COMPLETEDPATH_LIST("IMPORT-COMPLETEDPATH-LIST", "&dCompleted paths (&6{0}&d): {1}"),
+    /**
+     * none
+     */
+    INFO_NIL_PATH("INFO-NIL-PATH", "none"),
+    /**
+     * Is exempted from leaderboard: {0}
+     */
+    INFO_EXEMPTED_LEADERBOARD("INFO-EXEMPTED-LEADERBOARD", "&dIs exempted from leaderboard: {0}"),
+    /**
+     * Is exempted from checking: {0}
+     */
+    INFO_EXEMPTED_CHECKING("INFO-EXEMPTED-CHECKING", "&dIs exempted from checking: {0}"),
+    /**
+     * Is exempted from obtaining time: {0}
+     */
+    INFO_EXEMPTED_OBTAINING_TIME("INFO-EXEMPTED-OBTAINING-TIME", "&dIs exempted from obtaining time: {0}"),
+    /**
+     * True
+     */
+    INFO_BOOLEAN_TRUE("INFO-BOOLEAN-TRUE", "&atrue"),
+    /**
+     * False
+     */
+    INFO_BOOLEAN_FALSE("INFO-BOOLEAN-TRUE", "&cfalse"),
+    /**
+     * none
+     */
+    INFO_NIL_PLAYTIME("INFO-NIL-PLAYTIME", "none"),
+    /**
+     * Local playtime: {0}
+     */
+    INFO_PLAYTIME_LOCAL("INFO-PLAYTIME-LOCAL", "&dLocal playtime: &6{0}"),
+    /**
+     * Global playtime: {0}
+     */
+    INFO_PLAYTIME_GLOBAL("INFO-PLAYTIME-GLOBAL", "&dGlobal playtime: &6{0}"),
+    /**
+     * Updating the leaderboard. This could take a while!
+     */
+    LEADERBOARD_FORCEUPDATE_1("LEADERBOARD-FORCEUPDATE-1", "&aUpdating the leaderboard. This could take a while!"),
+    /**
+     * I'll let you know when the leaderboard is updated.
+     */
+    LEADERBOARD_FORCEUPDATE_2("LEADERBOARD-FORCEUPDATE-2", "&6I'll let you know when the leaderboard is updated."),
+    /**
+     * Leaderboard updated!
+     */
+    LEADERBOARD_FORCEUPDATE_DONE("LEADERBOARD-FORCEUPDATE-DONE", "&eLeaderboard updated!"),
+    /**
+     * This is not a valid type of migration!
+     */
+    MIGRATE_INVALID_TYPE("MIGRATE-INVALID-TYPE", "&cThis is not a valid type of migration!"),
+    /**
+     * Could not find a migration plugin for the type you specified.
+     */
+    MIGRATE_SOURCE_NOTFOUND("MIGRATE-SOURCE-NOTFOUND", "&cCould not find a migration plugin for the type you specified."),
+    /**
+     * This migration plugin is not ready to be used. Are the plugins that depend on it active?
+     */
+    MIGRATE_SOURCE_NOTREADY("MIGRATE-SOURCE-NOTREADY", "&cThis migration plugin is not ready to be used. Are the plugins that depend on it active?"),
+    /**
+     * {0} players have been migrated to Autorank.
+     */
+    MIGRATE_SUCCESS("MIGRATE-SUCCESS", "&a{0} players have been migrated to Autorank."),
+    /**
+     * Reset progress on all active paths of {0}
+     */
+    RESET_ACTIVE_PROGRESS("RESET-ACTIVE-PROGRESS", "&aReset progress on all active paths of &e{0}"),
+    /**
+     * Removed all active paths of {0}
+     */
+    RESET_ACTIVE_PATHS("RESET-ACTIVE-PATHS", "&aReset progress on all active paths of &e{0}"),
+    /**
+     * Removed all completed paths of {0}
+     */
+    RESET_COMPLETED_PATHS("RESET-COMPLETED-PATHS", "&aRemoved all completed paths of &e{0}"),
+    /**
+     * Reset progress on all paths (active AND completed) of {0}
+     */
+    RESET_ALL_PROGRESS("RESET-ALL-PROGRESS", "&aReset progress on all paths (active AND completed) of &e{0}"),
+    /**
+     * You probably meant /ar syncstats or /ar sync!
+     */
+    SYNC_SUGGESTION("SYNC-SUGGESTION", "&cYou probably meant /ar syncstats or /ar sync!"),
+    /**
+     * There is no active storage provider that supports flatfile data.
+     */
+    SYNC_FLATFILE_STORAGE_NOTACTIVE("SYNC-FLATFILE-STORAGE-NOTACTIVE", "&cThere is no active storage provider that supports flatfile data."),
+    /**
+     * You do not have to use this command regularly.
+     */
+    SYNC_NOTICE("SYNC-NOTICE", "&cYou do not have to use this command regularly."),
+    /**
+     * Successfully updated {0} items in data.yml from MySQL database records!
+     */
+    SYNC_SUCCESS_LOCAL("SYNC-SUCCESS-LOCAL", "&aSuccessfully updated {0} items in data.yml from MySQL database records!"),
+    /**
+     * Successfully updated MySQL records!
+     */
+    SYNC_SUCCESS_MYSQL("SYNC-SUCCESS-MYSQL", "&aSuccessfully updated MySQL records!"),
+    /**
+     * Could not sync stats. Run command again!
+     */
+    SYNC_STATS_FAILED("SYNC-STATS-FAILED", "&aCould not sync stats. Run command again!"),
+    /**
+     * Time has succesfully been updated for all entries.
+     */
+    SYNC_STATS_SUCCESS("SYNC-STATS-SUCCESS", "&aTime has succesfully been updated for all entries."),
+    /**
+     * You don't have any requirements!
+     */
+    TRACK_NO_REQUIREMENT("TRACK-NO-REQUIREMENT", "&cYou don't have any requirements!"),
+    /**
+     * Current: {0}
+     */
+    TRACK_CURRENT_REQUIREMENT("TRACK-CURRENT-REQUIREMENT", "&aCurrent: &6{0}"),
+    /**
+     * The following paths are possible: 
+     */
+    VIEW_POSSIABLE_PATHS("VIEW-POSSIBLE-PATHS", "&aThe following paths are possible: "),
+    /**
+     * Prerequisites of path {0}:
+     */
+    VIEW_PATH_PREREQUISITES("VIEW-PATH-PREREQUISITES", "&aPrerequisites of path &7{0}&a:"),
+    /**
+     * none
+     */
+    VIEW_PATH_NIL_PREREQUISITES("VIEW-PATH-NIL-PREREQUISITES", "none"),
+    /**
+     * Requirements of path {0}: 
+     */
+    VIEW_PATH_REQUIREMENT("VIEW-PATH-REQUIREMENT", "&aRequirements of path &7{0}&a:"),
+    /**
+     * none
+     */
+    VIEW_PATH_NIL_REQUIREMENT("VIEW-PATH-NIL-REQUIREMENT", "none"),
+    /**
+     * Requirements of path {0}: 
+     */
+    VIEW_PATH_RESULTS("VIEW-PATH-RESULTS", "&aRequirements of path &7{0}&a:"),
+    /**
+     * none
+     */
+    VIEW_PATH_NIL_RESULTS("VIEW-PATH-NIL-RESULTS", "none"),
+
+
+
+
+    /**
+     * Add [value] to [player]'s time
+     */
+    DESC_ADD_COMMAND("DESC-ADD-COMMAND", "Add [value] to [player]'s time"),
+    /**
+     * Backup files with playerdata and/or regular storage.
+     */
+    DESC_BACKUP_COMMAND("DESC-BACKUP-COMMAND", "Backup files with playerdata and/or regular storage."),
+    /**
+     * Check [player]'s status
+     */
+    DESC_CHECK_COMMAND("DESC-CHECK-COMMAND", "Check [player]'s status"),
+    /**
+     * Activate a path
+     */
+    DESC_CHOOSE_COMMAND("DESC-CHOOSE-COMMAND", "Activate a path"),
+    /**
+     * Complete a requirement at this moment
+     */
+    DESC_COMPLETE_COMMAND("DESC-COMPLETE-COMMAND", "Complete a requirement at this moment"),
+    /**
+     * Deactivate a path
+     */
+    DESC_DEACTIVATE_COMMAND("DESC-DEACTIVATE-COMMAND", "Deactivate a path"),
+    /**
+     * Shows debug information.
+     */
+    DESC_DEBUG_COMMAND("DESC-DEBUG-COMMAND", "Shows debug information."),
+    /**
+     * Edit player data of any player
+     */
+    DESC_EDITOR_COMMAND("DESC-EDITOR-COMMAND", "Edit player data of any player."),
+    /**
+     * Do a manual silent check.
+     */
+    DESC_FORCECHECK_COMMAND("DESC-FORCECHECK-COMMAND", "Edit player data of any player."),
+    /**
+     * Add [value] to [player]'s global time
+     */
+    DESC_GLOBALADD_COMMAND("DESC-GLOBALADD-COMMAND", "Add [value] to [player]'s global time"),
+    /**
+     * Check [player]'s global playtime.
+     */
+    DESC_GLOBALCHECK_COMMAND("DESC-GLOBALCHECK-COMMAND", "Check [player]'s global playtime."),
+    /**
+     * Set [player]'s global time to [value].
+     */
+    DESC_GLOBALSET_COMMAND("DESC-GLOBALSET-COMMAND", "Set [player]'s global time to [value]."),
+    /**
+     * Show a list of commands.
+     */
+    DESC_HELP_COMMAND("DESC-HELP-COMMAND", "Show a list of commands."),
+    /**
+     * Shows a list of plugins Autorank is hooked into.
+     */
+    DESC_HOOKS_COMMAND("DESC-HOOKS-COMMAND", "Shows a list of plugins Autorank is hooked into."),
+    /**
+     * Import time data from your flatfiles into the system.
+     */
+    DESC_IMPORT_COMMAND("DESC-IMPORT-COMMAND", "Import time data from your flatfiles into the system."),
+    /**
+     * Show info of a player.
+     */
+    DESC_INFO_COMMAND("DESC-INFO-COMMAND", "Show info of a player."),
+    /**
+     * Show the leaderboard.
+     */
+    DESC_LEADERBOARD_COMMAND("DESC-LEADERBOARD-COMMAND", "Show the leaderboard."),
+    /**
+     * Migrate play time data from another plugin to Autorank
+     */
+    DESC_MIGRATE_COMMAND("DESC-MIGRATE-COMMAND", "Migrate play time data from another plugin to Autorank"),
+    /**
+     * Reload Autorank.
+     */
+    DESC_RELOAD_COMMAND("DESC-RELOAD-COMMAND", "Reload Autorank."),
+    /**
+     * Remove [value] from [player]'s time.
+     */
+    DESC_REMOVE_COMMAND("DESC-REMOVE-COMMAND", "Remove [value] from [player]'s time."),
+    /**
+     * Reset certain storage of a player
+     */
+    DESC_RESET_COMMAND("DESC-RESET-COMMAND", "Reset certain storage of a player"),
+    /**
+     * Set [player]'s time to [value].
+     */
+    DESC_SET_COMMAND("DESC-SET-COMMAND", "Set [player]'s time to [value]."),
+    /**
+     * Sync MySQL database with server (Use only once per server).
+     */
+    DESC_SYNC_COMMAND("DESC-SYNC-COMMAND", "Sync MySQL database with server (Use only once per server)."),
+    /**
+     * Sync Autorank's time to Stats' time.
+     */
+    DESC_SYNC_STATS_COMMAND("DESC-SYNC-STATS-COMMAND", "Sync Autorank's time to Stats' time."),
+    /**
+     * Show the amount of time you played.
+     */
+    DESC_TIMES_COMMAND("DESC-TIMES-COMMAND", "Show the amount of time you played."),
+    /**
+     * Track the progress of a requirement.
+     */
+    DESC_TRACK_COMMAND("DESC-TRACK-COMMAND", "Track the progress of a requirement."),
+    /**
+     * Gives a preview of a certain ranking path
+     */
+    DESC_VIEW_COMMAND("DESC-VIEW-COMMAND", "Gives a preview of a certain ranking path."),
+
+    
+
+    /**
+     * /ar add [player] [value]
+     */
+    USAGE_ADD_COMMAND("USAGE-ADD-COMMAND", "/ar add [player] [value]"),
+    /**
+     * /ar backup <file>
+     */
+    USAGE_BACKUP_COMMAND("DESC-BACKUP-COMMAND", "/ar backup <file>"),
+    /**
+     * /ar check <player> <path>
+     */
+    USAGE_CHECK_COMMAND("USAGE-CHECK-COMMAND", "/ar check <player> <path>"),
+    /**
+     * /ar choose <path>
+     */
+    USAGE_CHOOSE_COMMAND("USAGE-CHECK-COMMAND", "/ar check <player> <path>"),
+    /**
+     * /ar complete <req id> <path>
+     */
+    USAGE_COMPLETE_COMMAND("USAGE-CHOOSE-COMMAND", "/ar complete <req id> <path>"),
+    /**
+     * /ar deactivate <path>
+     */
+    USAGE_DEACTIVATE_COMMAND("USAGE-DEACTIVATE-COMMAND", "/ar deactivate <path>"),
+    /**
+     * /ar debug
+     */
+    USAGE_DEBUG_COMMAND("USAGE-DEBUG-COMMAND", "/ar debug"),
+    /**
+     * /ar editor
+     */
+    USAGE_EDITOR_COMMAND("USAGE-EDITOR-COMMAND", "/ar editor"),
+    /**
+     * /ar forcecheck <player>
+     */
+    USAGE_FORCECHECK_COMMAND("USAGE-FORCECHECK-COMMAND", "/ar forcecheck <player>"),
+    /**
+     * /ar gadd [player] [value]
+     */
+    USAGE_GLOBALADD_COMMAND("USAGE-GLOBALADD-COMMAND", "/ar gadd [player] [value]"),
+    /**
+     * /ar gcheck [player]
+     */
+    USAGE_GLOBALCHECK_COMMAND("USAGE-GLOBALCHECK-COMMAND", "/ar gcheck [player]"),
+    /**
+     * /ar gset [player] [value]
+     */
+    USAGE_GLOBALSET_COMMAND("USAGE-GLOBALSET-COMMAND", "/ar gset [player] [value]"),
+    /**
+     * /ar help <page>
+     */
+    USAGE_HELP_COMMAND("USAGE-HELP-COMMAND", "/ar help <page>"),
+    /**
+     * /ar hooks
+     */
+    USAGE_HOOKS_COMMAND("USAGE-HOOKS-COMMAND", "/ar hooks"),
+    /**
+     * /ar import <parameters>
+     */
+    USAGE_IMPORT_COMMAND("USAGE-IMPORT-COMMAND", "/ar import <parameters>"),
+    /**
+     * /ar info <player>
+     */
+    USAGE_INFO_COMMAND("USAGE-INFO-COMMAND", "/ar info <player>"),
+    /**
+     * /ar leaderboard <type>
+     */
+    USAGE_LEADERBOARD_COMMAND("USAGE-LEADERBOARD-COMMAND", "/ar leaderboard <type>"),
+    /**
+     * /ar migrate <type>
+     */
+    USAGE_MIGRATE_COMMAND("USAGE-MIGRATE-COMMAND", "/ar migrate <type>"),
+    /**
+     * /ar reload
+     */
+    USAGE_RELOAD_COMMAND("USAGE-RELOAD-COMMAND", "/ar reload"),
+    /**
+     * /ar remove [player] [value]
+     */
+    USAGE_REMOVE_COMMAND("USAGE-REMOVE-COMMAND", "/ar remove [player] [value]"),
+    /**
+     * /ar reset <player> <action>
+     */
+    USAGE_RESET_COMMAND("USAGE-RESET-COMMAND", "/ar reset <player> <action>"),
+    /**
+     * /ar set [player] [value]
+     */
+    USAGE_SET_COMMAND("USAGE-SET-COMMAND", "/ar set [player] [value]"),
+    /**
+     * /ar sync
+     */
+    USAGE_SYNC_COMMAND("USAGE-SYNC-COMMAND", "/ar sync"),
+    /**
+     * /ar syncstats
+     */
+    USAGE_SYNC_STATS_COMMAND("USAGE-SYNC-STATS-COMMAND", "/ar syncstats"),
+    /**
+     * /ar times <player>
+     */
+    USAGE_TIMES_COMMAND("USAGE-TIMES-COMMAND", "/ar times <player>"),
+    /**
+     * /ar track <req id> <path>
+     */
+    USAGE_TRACK_COMMAND("USAGE-TRACK-COMMAND", "/ar track <req id> <path>"),
+    /**
+     * /ar view <path name> or /ar view list
+     */
+    USAGE_VIEW_COMMAND("USAGE-VIEW-COMMAND", "/ar track <req id> <path>"),
+
+
     ;
+
+
+
 
     private static FileConfiguration LANG;
 

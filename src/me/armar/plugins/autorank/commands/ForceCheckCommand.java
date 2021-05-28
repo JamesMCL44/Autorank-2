@@ -59,7 +59,8 @@ public class ForceCheckCommand extends AutorankCommand {
             plugin.getPlayerChecker().checkPlayer(uuid);
 
             // Let checker know that we checked.
-            sender.sendMessage(ChatColor.GREEN + playerName + " checked!");
+            sender.sendMessage(Lang.FORCECHECK_DONE.getConfigValue(playerName));
+            // sender.sendMessage(ChatColor.GREEN + playerName + " checked!");
         });
 
         this.runCommandTask(task);
@@ -69,7 +70,8 @@ public class ForceCheckCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Do a manual silent check.";
+        return Lang.DESC_FORCECHECK_COMMAND.getConfigValue();
+        // return "Do a manual silent check.";
     }
 
     @Override
@@ -79,6 +81,7 @@ public class ForceCheckCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar forcecheck <player>";
+        return Lang.USAGE_FORCECHECK_COMMAND.getConfigValue();
+        // return "/ar forcecheck <player>";
     }
 }

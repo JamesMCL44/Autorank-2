@@ -81,7 +81,8 @@ public class SetCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Set [player]'s time to [value].";
+        return Lang.DESC_SET_COMMAND.getConfigValue();
+        // return "Set [player]'s time to [value].";
     }
 
     @Override
@@ -91,6 +92,7 @@ public class SetCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar set [player] [value]";
+        return Lang.USAGE_SET_COMMAND.getConfigValue();
+        // return "/ar set [player] [value]";
     }
 }

@@ -2,6 +2,7 @@ package me.armar.plugins.autorank.commands;
 
 import me.armar.plugins.autorank.Autorank;
 import me.armar.plugins.autorank.commands.manager.AutorankCommand;
+import me.armar.plugins.autorank.language.Lang;
 import me.armar.plugins.autorank.permissions.AutorankPermission;
 import me.staartvin.utils.pluginlibrary.autorank.Library;
 import me.staartvin.utils.pluginlibrary.autorank.hooks.AutorankHook;
@@ -27,20 +28,20 @@ public class HooksCommand extends AutorankCommand {
         if (!this.hasPermission(getPermission(), sender)) return true;
 
         if (!plugin.getDependencyManager().isPluginLibraryLoaded()) {
-            sender.sendMessage(ChatColor.RED + "Cannot show dependencies as PluginLibrary is not installed");
+            sender.sendMessage(Lang.HOOKS_CANNOT_SHOW.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "Cannot show dependencies as PluginLibrary is not installed");
             return true;
         }
 
-        sender.sendMessage(ChatColor.GOLD + "Autorank Hooks:");
+        sender.sendMessage(Lang.HOOKS_LIST.getConfigValue());
+        // sender.sendMessage(ChatColor.GOLD + "Autorank Hooks:");
 
         for (final Library dep : Library.values()) {
 
-            final LibraryHook handler = plugin.getDependencyManager()
-                    .getLibraryHook(dep).orElse(null);
+            final LibraryHook handler = plugin.getDependencyManager().getLibraryHook(dep).orElse(null);
 
             if (handler != null && handler.isHooked() && !(handler instanceof AutorankHook)) {
-                sender.sendMessage(org.bukkit.ChatColor.GRAY + "- " + org.bukkit.ChatColor.GREEN + dep
-                        .getHumanPluginName());
+                sender.sendMessage(org.bukkit.ChatColor.GRAY + "- " + org.bukkit.ChatColor.GREEN + dep.getHumanPluginName());
             }
         }
 
@@ -49,7 +50,8 @@ public class HooksCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Shows a list of plugins Autorank is hooked into.";
+        return Lang.DESC_HOOKS_COMMAND.getConfigValue();
+        // return "Shows a list of plugins Autorank is hooked into.";
     }
 
     @Override
@@ -59,6 +61,7 @@ public class HooksCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar hooks";
+        return Lang.USAGE_HOOKS_COMMAND.getConfigValue();
+        // return "/ar hooks";
     }
 }

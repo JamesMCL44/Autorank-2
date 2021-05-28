@@ -47,18 +47,18 @@ public class CheckCommand extends AutorankCommand {
         List<Path> activePaths = plugin.getPathManager().getActivePaths(uuid);
 
         if (activePaths.isEmpty()) {
-            sender.sendMessage(ChatColor.GOLD + playerName + ChatColor.RED + " does not have any active paths.");
+            sender.sendMessage(Lang.CHECK_NO_ACTIVE_PATH.getConfigValue(playerName));
+            // sender.sendMessage(ChatColor.GOLD + playerName + ChatColor.RED + " does not have any active paths.");
             return;
         }
 
-        sender.sendMessage(String.format(ChatColor.GREEN + "----- " + ChatColor.GRAY + "[Progress of paths for" +
-                " " +
-                ChatColor.GOLD + "%s" + ChatColor.GRAY + "] " + ChatColor.GREEN + " -----", playerName));
+        sender.sendMessage(String.format(Lang.CHECK_PLAYER_PROGRESS_HEADER.getConfigValue("%s"), playerName));
+        // sender.sendMessage(String.format(ChatColor.GREEN + "----- " + ChatColor.GRAY + "[Progress of paths for" + " " + ChatColor.GOLD + "%s" + ChatColor.GRAY + "] " + ChatColor.GREEN + " -----", playerName));
 
         for (Path activePath : activePaths) {
 
-            StringBuilder message = new StringBuilder(ChatColor.GRAY + "Progress of '" + ChatColor.BLUE + activePath
-                    .getDisplayName() + ChatColor.GRAY + "': ");
+            StringBuilder message = new StringBuilder(Lang.CHECK_PATH_PROGRESS_HEADER.getConfigValue(activePath.getDisplayName()));
+            // StringBuilder message = new StringBuilder(ChatColor.GRAY + "Progress of '" + ChatColor.BLUE + activePath.getDisplayName() + ChatColor.GRAY + "': ");
 
             double completeRatio = activePath.getProgress(uuid);
 
@@ -72,14 +72,13 @@ public class CheckCommand extends AutorankCommand {
                 message.append(ChatColor.RED + "|");
             }
 
-            message.append(ChatColor.GRAY + "]").append(ChatColor.GOLD + " (").append(new BigDecimal(completeRatio *
-                    100).setScale(2, RoundingMode.HALF_UP)).append("%)");
+            message.append(ChatColor.GRAY + "]").append(ChatColor.GOLD + " (").append(new BigDecimal(completeRatio * 100).setScale(2, RoundingMode.HALF_UP)).append("%)");
 
             sender.sendMessage(message.toString());
         }
 
-
-        sender.sendMessage(ChatColor.GOLD + "To view the progress of a specific path, use /ar check <path name>.");
+        sender.sendMessage(Lang.CHECK_PLAYER_PROGRESS_FOOTER.getConfigValue());
+        // sender.sendMessage(ChatColor.GOLD + "To view the progress of a specific path, use /ar check <path name>.");
     }
 
     // Show specific requirements for a path.
@@ -88,15 +87,20 @@ public class CheckCommand extends AutorankCommand {
         // Check whether the player completed any current paths.
         plugin.getPlayerChecker().checkPlayer(uuid);
 
-        sender.sendMessage(ChatColor.DARK_AQUA + "-----------------------");
+        sender.sendMessage(Lang.CHECK_SPECIFIC_PATH_LINE_1.getConfigValue());
+        sender.sendMessage(Lang.CHECK_SPECIFIC_PATH_LINE_2.getConfigValue(path.getDisplayName(), playerName));
+        sender.sendMessage(Lang.CHECK_SPECIFIC_PATH_LINE_3.getConfigValue());
+        sender.sendMessage(Lang.CHECK_SPECIFIC_PATH_LINE_4.getConfigValue());
 
-        sender.sendMessage(ChatColor.DARK_GREEN + "You are viewing the path '" + ChatColor.GOLD + path.getDisplayName
-                () + ChatColor.DARK_GREEN + "' for " +
-                playerName + ".");
+        // sender.sendMessage(ChatColor.DARK_AQUA + "-----------------------");
 
-        sender.sendMessage(ChatColor.DARK_AQUA + "-----------------------");
+        // sender.sendMessage(ChatColor.DARK_GREEN + "You are viewing the path '" + ChatColor.GOLD + path.getDisplayName
+        //         () + ChatColor.DARK_GREEN + "' for " +
+        //         playerName + ".");
 
-        sender.sendMessage(ChatColor.GRAY + "Requirements:");
+        // sender.sendMessage(ChatColor.DARK_AQUA + "-----------------------");
+
+        // sender.sendMessage(ChatColor.GRAY + "Requirements:");
 
         List<CompositeRequirement> allRequirements = path.getRequirements();
 
@@ -132,7 +136,8 @@ public class CheckCommand extends AutorankCommand {
             // Check if it is send from console.
             if (!(sender instanceof Player)) {
                 // We cannot check paths of console.
-                sender.sendMessage(ChatColor.RED + "You should specify a player to check.");
+                sender.sendMessage(Lang.CHECK_PATH_ERROR.getConfigValue());
+                // sender.sendMessage(ChatColor.RED + "You should specify a player to check.");
                 return true;
             }
 
@@ -235,7 +240,8 @@ public class CheckCommand extends AutorankCommand {
                 showListOfPaths = true;
             } else {
                 // The argument was not a player and not a path
-                sender.sendMessage(ChatColor.RED + "There is no player or path named '" + args[1] + "'.");
+                sender.sendMessage(Lang.CHECK_PATH_ERROR_NO_PLAYER.getConfigValue(args[1]));
+                // sender.sendMessage(ChatColor.RED + "There is no player or path named '" + args[1] + "'.");
                 return true;
             }
         }
@@ -317,9 +323,8 @@ public class CheckCommand extends AutorankCommand {
 
                 // Check if the path the player wants to check is active
                 if (finalTargetPath != null && !finalTargetPath.isActive(finalTargetUUID)) {
-                    sender.sendMessage(ChatColor.GOLD + finalTargetPlayerName + ChatColor.RED + " does not have "
-                            + ChatColor
-                            .GRAY + finalTargetPath.getDisplayName() + ChatColor.RED + " as an active path!");
+                    sender.sendMessage(Lang.CHECK_PATH_ERROR_NO_SPECIFIED_ACTIVE_PATH.getConfigValue(finalTargetPlayerName, finalTargetPath.getDisplayName()));
+                    // sender.sendMessage(ChatColor.GOLD + finalTargetPlayerName + ChatColor.RED + " does not have " + ChatColor.GRAY + finalTargetPath.getDisplayName() + ChatColor.RED + " as an active path!");
                     return;
                 }
 
@@ -353,7 +358,7 @@ public class CheckCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Check [player]'s status";
+        return Lang.DESC_CHECK_COMMAND.getConfigValue();
     }
 
     @Override
@@ -363,6 +368,6 @@ public class CheckCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar check <player> <path>";
+        return Lang.USAGE_CHECK_COMMAND.getConfigValue();
     }
 }

@@ -92,7 +92,8 @@ public class TrackCommand extends AutorankCommand {
         List<CompositeRequirement> requirements = targetPath.getRequirements();
 
         if (requirements.size() == 0) {
-            player.sendMessage(ChatColor.RED + "You don't have any requirements!");
+            player.sendMessage(Lang.TRACK_NO_REQUIREMENT.getConfigValue());
+            // player.sendMessage(ChatColor.RED + "You don't have any requirements!");
             return true;
         }
 
@@ -117,9 +118,10 @@ public class TrackCommand extends AutorankCommand {
             return true;
         }
 
-        player.sendMessage(ChatColor.RED + Lang.REQUIREMENT_PROGRESS.getConfigValue(completionID + ""));
+        player.sendMessage(ChatColor.RED + Lang.REQUIREMENT_PROGRESS.getConfigValue(completionID));
         player.sendMessage(ChatColor.AQUA + holder.getDescription());
-        player.sendMessage(ChatColor.GREEN + "Current: " + ChatColor.GOLD + holder.getProgress(player.getUniqueId()));
+        player.sendMessage(Lang.TRACK_CURRENT_REQUIREMENT.getConfigValue(holder.getProgress(player.getUniqueId())));
+        // player.sendMessage(ChatColor.GREEN + "Current: " + ChatColor.GOLD + holder.getProgress(player.getUniqueId()));
 
         return true;
     }
@@ -164,7 +166,8 @@ public class TrackCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Track the progress of a requirement.";
+        return Lang.DESC_TRACK_COMMAND.getConfigValue();
+        // return "Track the progress of a requirement.";
     }
 
     @Override
@@ -174,6 +177,7 @@ public class TrackCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar track <req id> <path>";
+        return Lang.USAGE_TRACK_COMMAND.getConfigValue();
+        // return "/ar track <req id> <path>";
     }
 }

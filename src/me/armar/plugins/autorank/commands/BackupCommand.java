@@ -2,6 +2,7 @@ package me.armar.plugins.autorank.commands;
 
 import me.armar.plugins.autorank.Autorank;
 import me.armar.plugins.autorank.commands.manager.AutorankCommand;
+import me.armar.plugins.autorank.language.Lang;
 import me.armar.plugins.autorank.permissions.AutorankPermission;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -35,18 +36,21 @@ public class BackupCommand extends AutorankCommand {
         }
 
         if (fileToBackup != null && !fileToBackup.equals("playerdata") && !fileToBackup.equals("storage")) {
-            sender.sendMessage(ChatColor.RED + "Invalid storage file. You can only backup 'playerdata' or 'storage'.");
+            sender.sendMessage(Lang.BACKUP_INVALID.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "Invalid storage file. You can only backup 'playerdata' or 'storage'.");
             return true;
         }
 
         if (backupAll || fileToBackup.equals("playerdata")) {
             plugin.getBackupManager().backupDataFolders("playerdata");
-            sender.sendMessage(ChatColor.GREEN + "Successfully created a backup of playerdata!");
+            sender.sendMessage(Lang.BACKUP_SUCCESS_PLAYERDATA.getConfigValue());
+            // sender.sendMessage(ChatColor.GREEN + "Successfully created a backup of playerdata!");
         }
 
         if (backupAll || fileToBackup.equals("storage")) {
             plugin.getBackupManager().backupDataFolders("storage");
-            sender.sendMessage(ChatColor.GREEN + "Successfully created a backup of regular time storage!");
+            sender.sendMessage(Lang.BACKUP_SUCCESS_STORAGE.getConfigValue());
+            // sender.sendMessage(ChatColor.GREEN + "Successfully created a backup of regular time storage!");
         }
 
         return true;
@@ -54,7 +58,8 @@ public class BackupCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Backup files with playerdata and/or regular storage.";
+        return Lang.DESC_BACKUP_COMMAND.getConfigValue();
+        // return "Backup files with playerdata and/or regular storage.";
     }
 
     @Override
@@ -64,6 +69,7 @@ public class BackupCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar backup <file>";
+        return Lang.USAGE_BACKUP_COMMAND.getConfigValue();
+        // return "/ar backup <file>";
     }
 }

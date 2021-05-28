@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
     <groupId>Autorank</groupId>
     <artifactId>Autorank</artifactId>
-    <version>4.5.1-SNAPSHOT-${BUILD_NUMBER}</version>
+    <version>4.5.1-SNAPSHOT-3</version>
     <name>Autorank</name>
     <description>Maven project for Spigot plugin Autorank</description>
     <url>https://www.spigotmc.org/resources/autorank.3239/</url>
@@ -124,6 +124,11 @@
     <repositories>
 
         <repository>
+            <id>codemc-snapshots</id>
+            <url>https://repo.codemc.io/repository/maven-snapshots/</url>
+        </repository>
+        
+        <repository>
             <id>jitpack.io</id>
             <url>https://jitpack.io</url>
         </repository>
@@ -154,6 +159,12 @@
 
 
     <dependencies>
+
+        <dependency>
+            <groupId>net.wesjd</groupId>
+            <artifactId>anvilgui</artifactId>
+            <version>1.5.0-SNAPSHOT</version>
+        </dependency>
 
         <dependency>
             <groupId>org.spigotmc</groupId>

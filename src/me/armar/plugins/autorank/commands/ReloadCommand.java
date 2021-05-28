@@ -43,7 +43,8 @@ public class ReloadCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Reload Autorank.";
+        return Lang.DESC_RELOAD_COMMAND.getConfigValue();
+        // return "Reload Autorank.";
     }
 
     @Override
@@ -53,6 +54,7 @@ public class ReloadCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar reload";
+        return Lang.USAGE_RELOAD_COMMAND.getConfigValue();
+        // return "/ar reload";
     }
 }

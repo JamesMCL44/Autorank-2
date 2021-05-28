@@ -92,24 +92,25 @@ public class ImportCommand extends AutorankCommand {
 
                 importedPlayers++;
             }
-
-            sender.sendMessage(ChatColor.GREEN + "Imported data of " + importedPlayers + " players from Minecraft " +
-                    "statistics!");
+            sender.sendMessage(Lang.IMPORT_MINECRAFT_STATS.getConfigValue(importedPlayers));
+            // sender.sendMessage(ChatColor.GREEN + "Imported data of " + importedPlayers + " players from Minecraft " +
+            //         "statistics!");
 
             return true;
         }
 
         // Check if we have an active storage provider.
         if (plugin.getPlayTimeStorageManager().getActiveStorageProviders().size() == 0) {
-            sender.sendMessage(ChatColor.RED + "There are no active storage providers, so I can't store the imported " +
-                    "data!");
+            sender.sendMessage(Lang.IMPORT_FAILED_NO_PROVIDER.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "There are no active storage providers, so I can't store the imported " +
+            //         "data!");
             return true;
         }
 
         // Check if we want to write to the global database and if there is a storage provider active that allows this.
         if (writeToGlobalDatabase && !plugin.getPlayTimeStorageManager().isStorageTypeActive(PlayTimeStorageProvider.StorageType.DATABASE)) {
-            sender.sendMessage(ChatColor.RED + "You want to store the imported data to the global database, but no " +
-                    "database is active.");
+            sender.sendMessage(Lang.IMPORT_FAILED_NO_DATABASE.getConfigValue());
+            // sender.sendMessage(ChatColor.RED + "You want to store the imported data to the global database, but no database is active.");
             return true;
         }
 
@@ -142,33 +143,40 @@ public class ImportCommand extends AutorankCommand {
                 if (finalWriteToGlobalDatabase && finalWriteToLocalDatabase) {
 
                     if (finalOverwriteGlobalDatabase && finalOverwriteLocalDatabase) {
-                        sender.sendMessage(ChatColor.GOLD + "Importing data and overriding both the global " +
-                                "and local database.");
+                        sender.sendMessage(Lang.IMPORT_OVERWRITE_BOTH.getConfigValue());
+                        // sender.sendMessage(ChatColor.GOLD + "Importing data and overriding both the global and local database.");
                     } else {
                         if (finalOverwriteGlobalDatabase) {
-                            sender.sendMessage(ChatColor.GOLD + "Importing data and overriding global database.");
+                            sender.sendMessage(Lang.IMPORT_OVERWRITE_GLOBAL.getConfigValue());
+                            // sender.sendMessage(ChatColor.GOLD + "Importing data and overriding global database.");
                         } else {
-                            sender.sendMessage(ChatColor.GOLD + "Importing data and adding to global database.");
+                            sender.sendMessage(Lang.IMPORT_APPEND_GLOBAL.getConfigValue());
+                            // sender.sendMessage(ChatColor.GOLD + "Importing data and adding to global database.");
                         }
 
                         if (finalOverwriteLocalDatabase) {
-                            sender.sendMessage(ChatColor.GOLD + "Importing data and overriding local database" +
-                                    ".");
+                            sender.sendMessage(Lang.IMPORT_OVERWRITE_LOCAL.getConfigValue());
+                            // sender.sendMessage(ChatColor.GOLD + "Importing data and overriding local database.");
                         } else {
-                            sender.sendMessage(ChatColor.GOLD + "Importing data and adding to local database.");
+                            sender.sendMessage(Lang.IMPORT_APPEND_LOCAL.getConfigValue());
+                            // sender.sendMessage(ChatColor.GOLD + "Importing data and adding to local database.");
                         }
                     }
                 } else if (finalWriteToGlobalDatabase) {
                     if (finalOverwriteGlobalDatabase) {
-                        sender.sendMessage(ChatColor.GOLD + "Importing data and overriding global database.");
+                        sender.sendMessage(Lang.IMPORT_OVERWRITE_GLOBAL.getConfigValue());
+                        // sender.sendMessage(ChatColor.GOLD + "Importing data and overriding global database.");
                     } else {
-                        sender.sendMessage(ChatColor.GOLD + "Importing data and adding to global database.");
+                        sender.sendMessage(Lang.IMPORT_APPEND_GLOBAL.getConfigValue());
+                        // sender.sendMessage(ChatColor.GOLD + "Importing data and adding to global database.");
                     }
                 } else {
                     if (finalOverwriteLocalDatabase) {
-                        sender.sendMessage(ChatColor.GOLD + "Importing data and overriding local database.");
+                        sender.sendMessage(Lang.IMPORT_OVERWRITE_LOCAL.getConfigValue());
+                        // sender.sendMessage(ChatColor.GOLD + "Importing data and overriding local database.");
                     } else {
-                        sender.sendMessage(ChatColor.GOLD + "Importing data and adding to local database.");
+                        sender.sendMessage(Lang.IMPORT_APPEND_LOCAL.getConfigValue());
+                        // sender.sendMessage(ChatColor.GOLD + "Importing data and adding to local database.");
                     }
                 }
 
@@ -263,8 +271,9 @@ public class ImportCommand extends AutorankCommand {
 
                             // Give a heads up to the sender if no files were imported.
                             if (importedPlayers == 0) {
-                                sender.sendMessage(ChatColor.RED + "Could not import any players for " + importedTimeType +
-                                        "! Are you sure you put any files in the imports folder?");
+                                sender.sendMessage(Lang.IMPORT_FAILED_NO_FILES.getConfigValue(importedTimeType));
+                                // sender.sendMessage(ChatColor.RED + "Could not import any players for " + importedTimeType +
+                                //         "! Are you sure you put any files in the imports folder?");
                             }
                         }
 
@@ -274,7 +283,8 @@ public class ImportCommand extends AutorankCommand {
                     @Override
                     public void promptDenied() {
                         // Prompt denied.
-                        sender.sendMessage(ChatColor.RED + "Import operation cancelled by user.");
+                        sender.sendMessage(Lang.IMPORT_CANCELLED.getConfigValue());
+                        // sender.sendMessage(ChatColor.RED + "Import operation cancelled by user.");
                     }
                 })).startConversationAsSender(sender);
             }
@@ -285,7 +295,8 @@ public class ImportCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Import time data from your flatfiles into the system.";
+        return Lang.DESC_IMPORT_COMMAND.getConfigValue();
+        // return "Import time data from your flatfiles into the system.";
     }
 
     @Override
@@ -295,6 +306,7 @@ public class ImportCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar import <parameters>";
+        return Lang.USAGE_IMPORT_COMMAND.getConfigValue();
+        // return "/ar import <parameters>";
     }
 }

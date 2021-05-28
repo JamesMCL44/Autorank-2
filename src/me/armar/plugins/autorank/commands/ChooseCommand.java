@@ -71,18 +71,22 @@ public class ChooseCommand extends AutorankCommand {
 
         // Check if the path is eligible.
         if (!targetPath.meetsPrerequisites(player.getUniqueId())) {
-            sender.sendMessage(ChatColor.RED + "You do not meet the prerequisites of this path!");
-            sender.sendMessage(ChatColor.RED + "Type " + ChatColor.GOLD + "/ar view "
-                    + targetPath.getDisplayName() + ChatColor.RED + " to see a list of prerequisites.");
+            sender.sendMessage(Lang.CHOOSE_UNMET_PREREQUISITES_PATH.getConfigValue());
+            sender.sendMessage(Lang.CHOOSE_UNMET_PREREQUISITES_PATH_2.getConfigValue(targetPath.getDisplayName()));
+            // sender.sendMessage(ChatColor.RED + "You do not meet the prerequisites of this path!");
+            // sender.sendMessage(ChatColor.RED + "Type " + ChatColor.GOLD + "/ar view "
+            //         + targetPath.getDisplayName() + ChatColor.RED + " to see a list of prerequisites.");
             return true;
         }
 
         // Check if the player is on cooldown.
         if (targetPath.isOnCooldown(player.getUniqueId())) {
-            sender.sendMessage(ChatColor.RED + "You are on cooldown for this path!");
-            sender.sendMessage(ChatColor.RED + "You need to wait " + ChatColor.GOLD +
-                    AutorankTools.timeToString((int) targetPath.getTimeLeftForCooldown(player.getUniqueId()),
-                            TimeUnit.MINUTES));
+            sender.sendMessage(Lang.CHOOSE_PATH_COOLDOWN.getConfigValue());
+            sender.sendMessage(Lang.CHOOSE_PATH_COOLDOWN_2.getConfigValue(AutorankTools.timeToString((int) targetPath.getTimeLeftForCooldown(player.getUniqueId()), TimeUnit.MINUTES)));
+            // sender.sendMessage(ChatColor.RED + "You are on cooldown for this path!");
+            // sender.sendMessage(ChatColor.RED + "You need to wait " + ChatColor.GOLD +
+            //         AutorankTools.timeToString((int) targetPath.getTimeLeftForCooldown(player.getUniqueId()),
+            //                 TimeUnit.MINUTES));
             return true;
         }
 
@@ -130,7 +134,8 @@ public class ChooseCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Activate a path";
+        return Lang.DESC_CHOOSE_COMMAND.getConfigValue();
+        // return "Activate a path";
     }
 
     @Override
@@ -140,7 +145,8 @@ public class ChooseCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar choose <path>";
+        return Lang.USAGE_CHOOSE_COMMAND.getConfigValue();
+        // return "/ar choose <path>";
     }
 
 }

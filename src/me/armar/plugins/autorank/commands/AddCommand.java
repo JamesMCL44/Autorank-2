@@ -80,7 +80,8 @@ public class AddCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Add [value] to [player]'s time";
+        return Lang.DESC_ADD_COMMAND.getConfigValue();
+        // return "Add [value] to [player]'s time";
     }
 
     @Override
@@ -90,6 +91,7 @@ public class AddCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar add [player] [value]";
+        return Lang.USAGE_ADD_COMMAND.getConfigValue();
+        // return "/ar add [player] [value]";
     }
 }

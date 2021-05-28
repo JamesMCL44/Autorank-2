@@ -82,7 +82,8 @@ public class GlobalSetCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Set [player]'s global time to [value].";
+        return Lang.DESC_GLOBALSET_COMMAND.getConfigValue();
+        // return "Set [player]'s global time to [value].";
     }
 
     @Override
@@ -92,6 +93,7 @@ public class GlobalSetCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar gset [player] [value]";
+        return Lang.USAGE_GLOBALSET_COMMAND.getConfigValue();
+        // return "/ar gset [player] [value]";
     }
 }

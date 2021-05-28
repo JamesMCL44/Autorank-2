@@ -11,6 +11,7 @@ import me.armar.plugins.autorank.commands.conversations.editorcommand.completepa
 import me.armar.plugins.autorank.commands.conversations.editorcommand.completerequirement.CompleteRequirementPrompt;
 import me.armar.plugins.autorank.commands.conversations.editorcommand.completerequirement.CompleteRequirementRequestRequirementIdPrompt;
 import me.armar.plugins.autorank.commands.manager.AutorankCommand;
+import me.armar.plugins.autorank.language.Lang;
 import me.armar.plugins.autorank.pathbuilder.Path;
 import me.armar.plugins.autorank.pathbuilder.holders.CompositeRequirement;
 import me.armar.plugins.autorank.permissions.AutorankPermission;
@@ -74,9 +75,11 @@ public class EditorCommand extends AutorankCommand {
                 // Assign the path.
                 try {
                     plugin.getPathManager().assignPath(path, uuid, assignedByForce);
-                    sender.sendMessage(ChatColor.GREEN + "Assigned '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' to " + playerName);
+                    sender.sendMessage(Lang.EDITOR_ASSIGN_PATH_SUCCESS.getConfigValue(path.getDisplayName(), playerName));
+                    // sender.sendMessage(ChatColor.GREEN + "Assigned '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' to " + playerName);
                 } catch (IllegalArgumentException e) {
-                    sender.sendMessage(ChatColor.RED + "Could not assign '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.RED + "' to " + playerName);
+                	sender.sendMessage(Lang.EDITOR_ASSIGN_PATH_FAIL.getConfigValue(path.getDisplayName(), playerName));
+                    // sender.sendMessage(ChatColor.RED + "Could not assign '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.RED + "' to " + playerName);
                     return;
                 }
             } else if (actionType.equals(EditorMenuPrompt.ACTION_TYPE_UNASSIGN_PATH)) {
@@ -98,7 +101,8 @@ public class EditorCommand extends AutorankCommand {
 
                 // De-assign the path
                 plugin.getPathManager().deassignPath(path, uuid);
-                sender.sendMessage(ChatColor.GREEN + "Unassigned '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' from " + playerName);
+                sender.sendMessage(Lang.EDITOR_UNASSIGN_PATH.getConfigValue(path.getDisplayName(), playerName));
+                // sender.sendMessage(ChatColor.GREEN + "Unassigned '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' from " + playerName);
             } else if (actionType.equals(EditorMenuPrompt.ACTION_TYPE_COMPLETE_PATH)) {
 
                 // Check for the correct permission.
@@ -116,7 +120,8 @@ public class EditorCommand extends AutorankCommand {
                     return;
                 }
 
-                sender.sendMessage(ChatColor.GREEN + "Path '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' has been completed for " + playerName);
+                sender.sendMessage(Lang.EDITOR_COMPLETE_PATH.getConfigValue(path.getDisplayName(), playerName));
+                // sender.sendMessage(ChatColor.GREEN + "Path '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' has been completed for " + playerName);
                 plugin.getPathManager().completePath(path, uuid);
 
             } else if (actionType.equals(EditorMenuPrompt.ACTION_TYPE_COMPLETE_REQUIREMENT)) {
@@ -148,8 +153,8 @@ public class EditorCommand extends AutorankCommand {
                 if (requirement == null) {
                     return;
                 }
-
-                sender.sendMessage(ChatColor.GREEN + "Requirement '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' has been completed for " + playerName);
+				sender.sendMessage(Lang.EDITOR_COMPLETE_PATH_REQUIREMENT.getConfigValue(path.getDisplayName(), playerName));
+                // sender.sendMessage(ChatColor.GREEN + "Requirement '" + ChatColor.GOLD + path.getDisplayName() + ChatColor.GREEN + "' has been completed for " + playerName);
                 path.completeRequirement(uuid, requirementId);
 
             }
@@ -163,7 +168,8 @@ public class EditorCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Edit player data of any player";
+        return Lang.DESC_EDITOR_COMMAND.getConfigValue();
+        // return "Edit player data of any player";
     }
 
     @Override
@@ -173,6 +179,7 @@ public class EditorCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar editor";
+        return Lang.USAGE_EDITOR_COMMAND.getConfigValue();
+        // return "/ar editor";
     }
 }

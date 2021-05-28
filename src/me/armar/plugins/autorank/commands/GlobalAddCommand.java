@@ -91,7 +91,8 @@ public class GlobalAddCommand extends AutorankCommand {
 
     @Override
     public String getDescription() {
-        return "Add [value] to [player]'s global time";
+        return Lang.DESC_GLOBALADD_COMMAND.getConfigValue();
+        // return "Add [value] to [player]'s global time";
     }
 
     @Override
@@ -101,6 +102,7 @@ public class GlobalAddCommand extends AutorankCommand {
 
     @Override
     public String getUsage() {
-        return "/ar gadd [player] [value]";
+        return Lang.USAGE_GLOBALADD_COMMAND.getConfigValue();
+        // return "/ar gadd [player] [value]";
     }
 }
